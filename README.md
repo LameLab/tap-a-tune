@@ -10,4 +10,4 @@ The Alexa Skill can be [enabled here](#). The skill requires a minimum of two [E
 
 
 ## Preview
-[![Alt text](https://img.youtube.com/vi/9t4dC5ZoHR0/0.jpg)](https://www.youtube.com/watch?v=9t4dC5ZoHR0)
+TBA
