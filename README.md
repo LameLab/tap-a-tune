@@ -15,6 +15,7 @@ The Alexa Skill can be [enabled here](#). The skill requires a minimum of two [E
 * Node.js (> v8.9)
 * Register for an [AWS Account](https://aws.amazon.com/)
 * Install and Setup [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)
+  - Easiest way to install `brew install awscli`
 * Configure a named [AWS CLI Profile](https://docs.aws.amazon.com/cli/latest/userguide/cli-multiple-profiles.html)
 * Register for an [Amazon Developer Account](https://developer.amazon.com/)
 * Install and Setup [ASK CLI](https://developer.amazon.com/docs/smapi/quick-start-alexa-skills-kit-command-line-interface.html)
