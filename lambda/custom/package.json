@@ -1,0 +1,21 @@
+{
+  "name": "tap-a-tune",
+  "version": "1.0.0",
+  "description": "This is a game that requires player's interaction to follow the rhythm/tune given",
+  "main": "index.js",
+  "dependencies": {
+    "ask-sdk-core": "^2.0.3",
+    "ask-sdk-dynamodb-persistence-adapter": "^2.0.3",
+    "ask-sdk-model": "^1.3.0"
+  },
+  "keywords": [
+    "alexa",
+    "skill",
+    "echo buttons"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lame Lab",
+  "license": "MIT"
+}

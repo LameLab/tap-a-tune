@@ -1,0 +1,68 @@
+{
+  "manifest": {
+    "publishingInformation": {
+      "locales": {
+        "en-US": {
+          "summary": "This is a game that requires player's interaction to follow the rhythm/tune given",
+          "examplePhrases": [
+            "Alexa, open tap a tune",
+            "Alexa, launch tap a tune"
+          ],
+          "keywords": [
+            "buttons",
+            "games"
+          ],
+          "name": "tap a tune",
+          "description": "Tap-a-Tune is a tune/melody memory game that test player's tune/melody memory"
+        },
+        "en-GB": {
+          "summary": "This is a game that requires player's interaction to follow the rhythm/tune given",
+            "examplePhrases": [
+              "Alexa, open tap a tune",
+              "Alexa, launch tap a tune"
+          ],
+          "keywords": [
+            "buttons",
+            "games"
+          ],
+          "name": "tap a tune",
+          "description": "Tap-a-Tune is a tune/melody memory game that test player's tune/melody memory"
+        }
+      },
+      "isAvailableWorldwide": true,
+      "testingInstructions": "Open the skill and follow the prompts. You will need two Echo buttons to test.",
+      "category": "GAMES",
+      "distributionCountries": [],
+      "gadgetSupport": {
+        "requirement": "REQUIRED",
+        "numPlayersMin": 1,
+        "numPlayersMax": 4,
+        "minGadgetButtons": 2,
+        "maxGadgetButtons": 4
+      }
+    },
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "sourceDir": "lambda/custom"
+        },
+        "interfaces": [
+          {
+            "type": "GAME_ENGINE"
+          },
+          {
+            "type": "GADGET_CONTROLLER"
+          }
+        ]
+      }
+    },
+    "manifestVersion": "1.0",
+    "privacyAndCompliance": {
+      "allowsPurchases": false,
+      "usesPersonalInfo": false,
+      "isChildDirected": false,
+      "isExportCompliant": true,
+      "containsAds": false
+    }
+  }
+}
