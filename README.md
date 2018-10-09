@@ -46,6 +46,16 @@ The following instructions show how to get this skill deployed using the ASK CLI
 	npm install
 	```
 
+### Update Lambda Role for DynamoDB Access to Store Player and Game Attributes
+
+1. Click **Services** at the top of the screen, and type "IAM" in the search box, and then press enter.
+
+2. Click **Roles** in the left hand navigation of the IAM Dashboard.
+
+3. Click the role you created above, **lambda_basic_execution**, then click the **Attach Policies** button.
+
+4. In the serch box type "Dynamo" and then select the checkbox next to **AmazonDynamoDBFullAccess**. Click the **Attach Policy** button.
+
 
 ### Deployment
 
@@ -58,6 +68,18 @@ ASK CLI will create the skill and the lambda function for you. The Lambda functi
 	```
 
 	**Note** This skill requires a NodeJS 8.10 or newer runtime. When deploying to Lambda, make sure the selected runtime is Node JS 8.10! At this time, the ASK CLI does not have an option to specify the Lambda runtime version so you will have to make the change manually in the AWS Lambda Console.
+
+
+### Post deployment setup
+1.  Go to **[AWS](https://aws.amazon.com)** and sign in to the console. If you don't already have an account, you will need to create one.  [If you don't have an AWS account, check out this quick walkthrough for setting it up](https://github.com/alexa/alexa-cookbook/blob/master/guides/aws-security-and-setup/set-up-aws.md).
+
+2.  Click **Services** at the top of the screen, and type "Lambda" in the search box.  You can also find Lambda in the list of services.  It is in the "Compute" section.
+
+3.  Select the lambda function `ask-custom-tap_a_tune-tap-a-tune
+`, add environment variables called:
+	- 'DYNAMODB_TABLE_NAME', with value 'tap-a-tune-sessions'
+
+
 
 ### Testing
 

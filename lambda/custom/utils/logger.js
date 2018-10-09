@@ -24,7 +24,7 @@ function getLevelValue(level) {
   }
 }
 
-const LOG_VALUE = getLevelValue(require('../config/config.js').LOG_LEVEL);
+const LOG_VALUE = getLevelValue(require('../config/config').LOG_LEVEL);
 
 function log(level, entry) {
   if (getLevelValue(level) <= LOG_VALUE) {
