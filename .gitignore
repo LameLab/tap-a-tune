@@ -59,3 +59,7 @@ typings/
 
 # next.js build output
 .next
+
+lambda/custom/config/config.js
+lambda/custom/node_modules
+.ask/config
