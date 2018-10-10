@@ -32,6 +32,14 @@
                 "samples": []
             },
             {
+                "name": "AMAZON.NoIntent",
+                "samples": []
+            },
+            {
+                "name": "AMAZON.YesIntent",
+                "samples": []
+            },
+            {
                 "name": "LaunchIntent",
                 "slots": [],
                 "samples": [
@@ -73,6 +81,18 @@
                     "there are {players} players",
                     "there are {players}",
                     "{players} players"
+                ]
+            },
+            {
+                "name": "PlayerCountOnlyIntent",
+                "slots": [
+                  {
+                    "name": "players",
+                    "type": "AMAZON.NUMBER"
+                  }
+                ],
+                "samples": [
+                  "{players}"
                 ]
             }
         ],

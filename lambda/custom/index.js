@@ -7,47 +7,45 @@ const config = require('./config/config');
 
 // import handlers
 const GlobalHandlers = require('./handlers/global-handlers');
+const StartHandlers = require('./handlers/start-handlers');
 
 // utils
 const logger = require('./utils/logger');
-
-
 
 /**
  * Lambda setup.
  */
 exports.handler = function (event, context) {
   let factory = Alexa.SkillBuilders.standard()
-    // .addRequestHandlers(
-    //   GlobalHandlers.HelpHandler,
-    //   GlobalHandlers.StopCancelHandler,
-    //   GlobalHandlers.SessionEndedRequestHandler,
-    //   GlobalHandlers.DefaultHandler
-    // )
-    // .addRequestInterceptors(GlobalHandlers.RequestInterceptor)
-    // .addResponseInterceptors(GlobalHandlers.ResponseInterceptor)
-    // .addErrorHandlers(GlobalHandlers.ErrorHandler);
+    .addRequestHandlers(
+      // GlobalHandlers.HelpHandler,
+      // GlobalHandlers.StopCancelHandler,
+      // GlobalHandlers.SessionEndedRequestHandler,
+      // GlobalHandlers.DefaultHandler
+      StartHandlers.PlayerCountHandler,
+      StartHandlers.YesHandler,
+      StartHandlers.NoHandler,
+      StartHandlers.LaunchPlayGameHandler,
+      StartHandlers.StartNewGameHandler
+    )
+    .addRequestInterceptors(GlobalHandlers.RequestInterceptor)
+    .addResponseInterceptors(GlobalHandlers.ResponseInterceptor)
+    .addErrorHandlers(GlobalHandlers.ErrorHandler);
 
   if (config.APP_ID) {
     factory.withSkillId(config.APP_ID);
   }
 
-  console.log("===ENV VAR DYNAMODBTABLE===: " + process.env.DYNAMODB_TABLE_NAME);
+  logger.debug("===ENV VAR DYNAMODBTABLE===: " + process.env.DYNAMODB_TABLE_NAME);
   if (process.env.DYNAMODB_TABLE_NAME && process.env.DYNAMODB_TABLE_NAME !== '') {
     config.STORAGE.SESSION_TABLE = process.env.DYNAMODB_TABLE_NAME;
-    console.log("===STORAGE SESSION TABLE Set to===: " + config.STORAGE.SESSION_TABLE);
+    logger.debug("===STORAGE SESSION TABLE Set to===: " + config.STORAGE.SESSION_TABLE);
   }
 
   if (config.STORAGE.SESSION_TABLE) {
     factory.withTableName(config.STORAGE.SESSION_TABLE)
       .withAutoCreateTable(true);
   }
-
-  console.log('EVENT OBJECT');
-  console.log(event);
-
-  console.log('CONTEXT OBJECT');
-  console.log(context);
 
   let skill = factory.create();
 

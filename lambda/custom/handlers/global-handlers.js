@@ -1,5 +1,7 @@
 'use strict';
 
+const i18n = require('i18next');
+
 const logger = require('../utils/logger');
 const messages = require('../config/messages');
 const config = require('../config/config');
