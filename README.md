@@ -46,6 +46,10 @@ The following instructions show how to get this skill deployed using the ASK CLI
 	npm install
 	```
 
+4. Rename `config-sample` to `config`
+
+5. Rename `lambda/custom/config/config-sample.js` to `lambda/custom/config/config.js`
+
 ### Update Lambda Role for DynamoDB Access to Store Player and Game Attributes
 
 1. Click **Services** at the top of the screen, and type "IAM" in the search box, and then press enter.
@@ -78,6 +82,8 @@ ASK CLI will create the skill and the lambda function for you. The Lambda functi
 3.  Select the lambda function `ask-custom-tap_a_tune-tap-a-tune
 `, add environment variables called:
 	- 'DYNAMODB_TABLE_NAME', with value 'tap-a-tune-sessions'
+
+4.  Once you have the alexa skills app ID, go to `lambda/custom/config.js` and update the alexa skills parameters and re-deploy
 
 
 
