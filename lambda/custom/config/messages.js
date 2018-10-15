@@ -38,43 +38,52 @@ const messages = {
       //--------------------  Start Game Related Prompts -------------------------------------------
       //
       'START_GAME': {
-        outputSpeech: "Welcome to " + GAME_TITLE + ". This game supports up to " +
-          config.GAME.MAX_PLAYERS + " players. " +
-          "How many players are there?",
-        reprompt: "How many players?",
+        outputSpeech: "Welcome to " + GAME_TITLE + ". This game supports minimum " +
+          config.GAME.MIN_BUTTONS +
+          " and up to " +
+          config.GAME.MAX_BUTTONS + " buttons. " +
+          "How many buttons are there?",
+        reprompt: "How many buttons?",
         displayTitle: GAME_TITLE + " - Welcome",
-        displayText: "Welcome to " + GAME_TITLE + ". This game supports up to " +
-          config.GAME.MAX_PLAYERS + " players."
+        displayText: "Welcome to " + GAME_TITLE + ". This game supports minimum " +
+          config.GAME.MIN_BUTTONS +
+          " and up to " +
+          config.GAME.MAX_BUTTONS + " buttons. " +
+          "How many buttons are there?"
       },
       'RESUME_GAME': {
         outputSpeech: 'Ok, we will pick up where you left off. ' +
-          'How many players will be playing?',
-        reprompt: 'How many players?',
+          'How many buttons are there?',
+        reprompt: 'How many buttons are there?',
         displayTitle: GAME_TITLE + " - Welcome",
         displayText: "Welcome back!"
       },
       'DONT_RESUME_GAME': {
-        outputSpeech: 'Ok, lets start a new game. How many players will be playing?',
-        reprompt: 'How many players?',
+        outputSpeech: 'Ok, lets start a new game. How many buttons are there?',
+        reprompt: 'How many buttons are there?',
         displayTitle: GAME_TITLE + " - Welcome",
         displayText: "Ok. Let's start a new game!"
       },
       'ASK_TO_RESUME': {
-        outputSpeech: "It looks like you have a {{player_count}} player game in progress, " +
+        outputSpeech: "It looks like you have {{button_count}} buttons game in progress, " +
           "would you like to resume?",
         reprompt: 'Would you like to resume the last game?',
         displayTitle: GAME_TITLE + " - Welcome",
-        displayText: "You have a {{player_count}} player game in progress."
+        displayText: "You have {{button_count}} buttons game in progress."
       },
-      'PLAYERCOUNT_INVALID': {
-        outputSpeech: 'Please say a number between one and ' + config.GAME.MAX_PLAYERS,
-        reprompt: 'Please say a number between one and ' + config.GAME.MAX_PLAYERS
-      },
-      'SINGLE_PLAYER_GAME_READY': {
+      // 'PLAYERCOUNT_INVALID': {
+      //   outputSpeech: 'Please say a number between one and ' + config.GAME.MAX_PLAYERS + ' players',
+      //   reprompt: 'Please say a number between one and ' + config.GAME.MAX_PLAYERS + ' players'
+      // },
+      'GAME_READY': {
         outputSpeech: ["Fantastic! Are you ready to start the game?"],
         reprompt: "Ready to start the game?",
         displayTitle: GAME_TITLE + " - Welcome",
         displayText: "Are you ready to start the game?"
+      },
+      'BUTTONCOUNT_INVALID': {
+        outputSpeech: 'Please say a number between ' + config.GAME.MIN_BUTTONS + ' and ' + config.GAME.MAX_BUTTONS + ' buttons',
+        reprompt: 'Please say a number between ' + config.GAME.MIN_BUTTONS + ' and ' + config.GAME.MAX_BUTTONS + ' buttons',
       },
 
       //
@@ -94,7 +103,7 @@ const messages = {
         outputSpeech: "Ok. Players, press your buttons now, " +
           "so I'll know which buttons you will be using.",
         displayTitle: GAME_TITLE + " - Welcome",
-        displayText: "To resume the game, each player, please press your button once!"
+        displayText: "To resume the game, please press all the buttons at once!"
       },
       'ROLL_CALL_TIME_OUT': {
         outputSpeech: "<say-as interpret-as='interjection'>uh oh</say-as>, " +
@@ -103,22 +112,22 @@ const messages = {
         reprompt: "should we continue?"
       },
       'ROLL_CALL_RESUME_GAME': {
-        outputSpeech: "To resume the game, each player, please press your button once!",
+        outputSpeech: "To resume the game, please press all the buttons at once!",
         displayTitle: GAME_TITLE + " - Welcome",
-        displayText: "To resume the game, each player, please press your button once!"
+        displayText: "To resume the game, please press all the buttons at once!"
       },
       'ROLL_CALL_COMPLETE': {
         outputSpeech: ["Great! We can start the game. Are you ready?",
-        "Awesome. All players registered. Are you ready to start the game?"],
+        "Awesome. All buttons registered. Are you ready to start the game?"],
         reprompt: "Ready to start the game?",
         displayTitle: GAME_TITLE + " - Welcome",
         displayText: "Are you ready to start the game?"
       },
-      'ROLL_CALL_HELLO_PLAYER': {
-        outputSpeech: "Hello, player {{player_number}}. "
+      'ROLL_CALL_HELLO_BUTTON': {
+        outputSpeech: "Button {{button_number}}. "
       },
-      'ROLL_CALL_NEXT_PLAYER_PROMPT': {
-        outputSpeech: "Ok, your turn Player {{player_number}}, press your button."
+      'ROLL_CALL_NEXT_PLAYER_BUTTON': {
+        outputSpeech: "Ok, press button {{button_number}}."
       },
     },
   },

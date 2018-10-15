@@ -29,14 +29,14 @@ const startHandlers = {
       /**
        * Check to see if we have an active game
        */
-      let validPlayerCount = sessionAttributes.playerCount &&
-        sessionAttributes.playerCount <= config.GAME.MAX_PLAYERS && sessionAttributes.playerCount > 0;
+      let validButtonCount = config.validButtonCount(sessionAttributes.buttonCount);
+
       let gameInProgress = (sessionAttributes.currentQuestion || 0) <= config.GAME.QUESTIONS_PER_GAME;
 
       let responseMessage;
-      if (validPlayerCount && gameInProgress) {
+      if (validButtonCount && gameInProgress) {
         logger.debug('LaunchPlayGameHandler: valid player count');
-        responseMessage = ctx.t('ASK_TO_RESUME', {'player_count': sessionAttributes.playerCount});
+        responseMessage = ctx.t('ASK_TO_RESUME', {'button_count': sessionAttributes.buttonCount});
       } else {
         logger.debug('LaunchPlayGameHandler: invalid player count');
         responseMessage = ctx.t('START_GAME');
@@ -65,25 +65,25 @@ const startHandlers = {
     handle(handlerInput) {
       logger.debug('START.StartNewGameHandler: handle');
       let sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
-      // Deleting playerCount to force launching of a new game
-      delete sessionAttributes.playerCount;
+      // Deleting buttonCount to force launching of a new game
+      delete sessionAttributes.buttonCount;
       return startHandlers.LaunchPlayGameHandler.handle(handlerInput);
     }
   },
-  PlayerCountHandler: {
+  ButtonCountHandler: {
     canHandle(handlerInput) {
-      logger.debug('START.PlayerCountHandler: canHandle');
+      logger.debug('START.ButtonCountHandler: canHandle');
       let {
         attributesManager,
         requestEnvelope
       } = handlerInput;
       return requestEnvelope.request.type === 'IntentRequest' &&
-        (requestEnvelope.request.intent.name === 'PlayerCountIntent' ||
-        requestEnvelope.request.intent.name === 'PlayerCountOnlyIntent') &&
+        (requestEnvelope.request.intent.name === 'ButtonCountIntent' ||
+          requestEnvelope.request.intent.name === 'ButtonCountOnlyIntent') &&
         attributesManager.getSessionAttributes().STATE === config.STATE.START_GAME_STATE;
     },
     handle(handlerInput) {
-      logger.debug('START.PlayerCountHandler: handle');
+      logger.debug('START.ButtonCountHandler: handle');
       let {
         requestEnvelope,
         attributesManager,
@@ -92,18 +92,18 @@ const startHandlers = {
       let sessionAttributes = attributesManager.getSessionAttributes();
       let ctx = attributesManager.getRequestAttributes();
 
-      sessionAttributes.playerCount = requestEnvelope.request.intent.slots.players &&
-        !isNaN(requestEnvelope.request.intent.slots.players.value) ?
-        parseInt(requestEnvelope.request.intent.slots.players.value, 10) : 0;
+      sessionAttributes.buttonCount = requestEnvelope.request.intent.slots.buttons &&
+        !isNaN(requestEnvelope.request.intent.slots.buttons.value) ?
+        parseInt(requestEnvelope.request.intent.slots.buttons.value, 10) : 0;
 
-      let validPlayerCount = sessionAttributes.playerCount &&
-        (sessionAttributes.playerCount <= config.GAME.MAX_PLAYERS) && (sessionAttributes.playerCount > 0);
+      let validButtonCount = config.validButtonCount(sessionAttributes.buttonCount);
 
-      if (validPlayerCount){
-        logger.debug('PlayerCountHandler: valid player count');
+      if (validButtonCount){
+        logger.debug('ButtonCountHandler: valid button count');
       } else {
-        logger.debug('PlayerCountHandler: invalid player count');
-        let responseMessage = ctx.t('PLAYERCOUNT_INVALID');
+        logger.debug('ButtonCountHandler: invalid button count');
+        const responseMessage = ctx.t('BUTTONCOUNT_INVALID');
+
         ctx.outputSpeech.push(responseMessage.outputSpeech);
         ctx.reprompt.push(responseMessage.reprompt);
         ctx.openMicrophone = true;
@@ -163,10 +163,9 @@ const startHandlers = {
       let sessionAttributes = attributesManager.getSessionAttributes();
       let ctx = attributesManager.getRequestAttributes();
 
-      let validPlayerCount = sessionAttributes.playerCount &&
-        sessionAttributes.playerCount <= config.GAME.MAX_PLAYERS && sessionAttributes.playerCount > 0;
+      let validButtonCount = config.validButtonCount(sessionAttributes.buttonCount);
 
-      if (validPlayerCount) {
+      if (validButtonCount) {
         logger.debug('YesHandler: valid player count');
       } else {
         logger.debug('YesHandler: invalid player count');

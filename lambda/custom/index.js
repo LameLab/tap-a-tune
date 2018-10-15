@@ -22,7 +22,7 @@ exports.handler = function (event, context) {
       // GlobalHandlers.StopCancelHandler,
       // GlobalHandlers.SessionEndedRequestHandler,
       // GlobalHandlers.DefaultHandler
-      StartHandlers.PlayerCountHandler,
+      StartHandlers.ButtonCountHandler,
       StartHandlers.YesHandler,
       StartHandlers.NoHandler,
       StartHandlers.LaunchPlayGameHandler,

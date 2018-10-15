@@ -65,34 +65,30 @@
                 ]
             },
             {
-                "name": "PlayerCountIntent",
+                "name": "ButtonsCountIntent",
                 "slots": [
                     {
-                        "name": "players",
+                        "name": "buttons",
                         "type": "AMAZON.NUMBER"
                     }
                 ],
                 "samples": [
-                    "there will be {players} players",
-                    "there will be {players}",
-                    "we have {players} players",
-                    "we have {players}",
-                    "there are {players} of us",
-                    "there are {players} players",
-                    "there are {players}",
-                    "{players} players"
+                    "there will be {buttons} buttons",
+                    "we have {buttons} buttons",
+                    "there are {buttons} buttons",
+                    "{buttons} buttons"
                 ]
             },
             {
-                "name": "PlayerCountOnlyIntent",
+                "name": "ButtonCountOnlyIntent",
                 "slots": [
                   {
-                    "name": "players",
+                    "name": "buttons",
                     "type": "AMAZON.NUMBER"
                   }
                 ],
                 "samples": [
-                  "{players}"
+                  "{buttons}"
                 ]
             }
         ],
